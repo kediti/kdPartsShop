@@ -45,8 +45,6 @@ public class UserDAO {
 	public int join(User user) {
 		String SQL = "INSERT INTO USER VALUES(?,?,?,?,?,?,?)";
 		try {
-			conn.setAutoCommit(false);
-			
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, user.getUserNo());
 			pstmt.setString(2, user.getUserId());
@@ -55,9 +53,6 @@ public class UserDAO {
 			pstmt.setString(5, user.getNickname());
 			pstmt.setString(6, user.getTelecom());
 			pstmt.setString(7, user.getPhone());
-			pstmt.executeUpdate();
-			conn.commit();
-			return 0;
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
