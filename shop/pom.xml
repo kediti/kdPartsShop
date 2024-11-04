@@ -87,6 +87,8 @@
 		    <version>3.1.0</version>
 		</dependency>
 
+
+
 		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
 		<dependency>
 		    <groupId>org.mybatis.spring.boot</groupId>
@@ -98,6 +100,12 @@
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis-typehandlers-jsr310</artifactId>
 		    <version>1.0.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.networknt/exception -->
+		<dependency>
+		    <groupId>com.networknt</groupId>
+		    <artifactId>exception</artifactId>
+		    <version>2.1.37</version>
 		</dependency>
 				
 
