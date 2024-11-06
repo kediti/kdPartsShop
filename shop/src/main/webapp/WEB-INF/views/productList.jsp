@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://jakarta.servlet.jsp.jstl.core" %>
+<%@ taglib prefix="fmt" uri="http://jakarta.servlet.jsp.jstl.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,30 +18,30 @@
 		<div class="itemIist">
 			<c:forEach var="product" items="${List}">
 				<div>
-					<a href="${path}/product/${row.prdId}">
-						<img src="${path}/images/${row.prdImg}">
+					<a href="${path}/product/${product.prdId}">
+						<img src="${path}/images/${product.prdImg}">
 					</a>
 				</div>
 				<div class="prdPack">
 					<p>
-						${row.prdPack}
+						${product.prdPack}
 					</p>
 				</div>
 				<div class="prdParts">
 					<p>
-						${row.prdParts}
+						${product.prdParts}
 					</p>
 				</div>
 				<div class="prdname">
 					<p>
-					<a href="${path}/product/${row.prdId}">
-						${row.prdName}
+					<a href="${path}/product/${product.prdId}">
+						${product.prdName}
 					</a>
 					</p>
 				</div>
-				<div class="prdParts">
+				<div class="prdPrice">
 					<p>
-						<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${row.prdPrice}"/>
+						<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${product.prdPrice}"/>
 					</p>
 				</div>	
 			</c:forEach>

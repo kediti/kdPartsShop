@@ -2,6 +2,7 @@ package com.kdparts.entity;
 
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,14 +15,28 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "prd_id")
 	private Long prdId;
 	
+	@Column(name = "prd_img")
 	private String prdImg;
+	
+	@Column(name = "prd_pack")
 	private String prdPack;
+	
+	@Column(name = "prd_parts")
 	private String prdParts;
+	
+	@Column(name = "prd_name")
 	private String prdName;
+	
+	@Column(name = "prd_des")
 	private String prdDes;
+	
+	@Column(name = "prd_cost")
 	private int prdCost;
+	
+	@Column(name = "prd_price")
 	private int prdPrice;
 	
 	
