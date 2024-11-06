@@ -100,9 +100,19 @@
 		    <version>1.0.2</version>
 		</dependency>
 				
-
+		<!-- https://mvnrepository.com/artifact/com.networknt/exception -->
+		<dependency>
+		    <groupId>com.networknt</groupId>
+		    <artifactId>exception</artifactId>
+		    <version>2.1.37</version>
+		</dependency>
 				
-		
+		<!-- https://mvnrepository.com/artifact/com.networknt/exception -->
+			<dependency>
+			    <groupId>com.networknt</groupId>
+			    <artifactId>exception</artifactId>
+			    <version>2.1.37</version>
+			</dependency>
 	</dependencies>
 
 	<build>
