@@ -21,7 +21,7 @@
 				<p></p>
 				<div>
 					<label> PASSWORD </label>
-					<input type="text" name="userPw" id="password"maxlength="30">
+					<input type="password" name="userPw" id="password"maxlength="30">
 				</div>
 				<input type="submit" value="LOG IN">
 			</form>
