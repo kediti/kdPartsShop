@@ -27,6 +27,7 @@ public class PrdController {
 	public String getProductList(Model model) {
 		List<Product> products = prdService.getAllproduct();
 		model.addAttribute("product", prdService.getAllproduct());
+		model.addAttribute("List", products);
 		return "productList";
 	}
 }
