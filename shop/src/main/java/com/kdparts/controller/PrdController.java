@@ -26,7 +26,7 @@ public class PrdController {
 	@RequestMapping("/productList")
 	public String getProductList(Model model) {
 		List<Product> products = prdService.getAllproduct();
-		model.addAttribute("product", products);
+		model.addAttribute("product", prdService.getAllproduct());
 		return "productList";
 	}
 }

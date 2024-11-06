@@ -15,7 +15,7 @@
 			<h1>ITEM LIST</h1>
 		</div>
 		<div class="itemIist">
-			<c:forEach var="sup" items="${List}">
+			<c:forEach var="product" items="${List}">
 				<div>
 					<a href="${path}/product/${row.prdId}">
 						<img src="${path}/images/${row.prdImg}">

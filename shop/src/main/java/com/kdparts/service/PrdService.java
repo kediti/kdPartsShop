@@ -23,6 +23,6 @@ public class PrdService {
 	    }
 	public List<Product> getAllproduct() {
 		// TODO Auto-generated method stub
-		return null;
+		return prdRepository.findAll();
 	} 
 }
