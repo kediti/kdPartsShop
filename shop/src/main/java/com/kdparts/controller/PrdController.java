@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.kdparts.dto.prdFormDTO;
 import com.kdparts.entity.Product;
 import com.kdparts.service.PrdService;
 
@@ -29,5 +30,11 @@ public class PrdController {
 		model.addAttribute("product", prdService.getAllproduct());
 		model.addAttribute("List", products);
 		return "productList";
+	}
+	
+	@RequestMapping("/prdAdmin")
+	public String prdAdmin(Model model) {
+		model.addAttribute("prdFormDTO",new prdFormDTO());
+		return "prdAdmin";
 	}
 }
