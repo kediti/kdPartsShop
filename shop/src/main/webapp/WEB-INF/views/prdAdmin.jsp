@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kdparts.dto.prdFormDTO"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +11,12 @@
 	<section class="wrap">
 		<div class="container">
 			<div class="title">
-				<h3>
+				<h2>
 					상품 등록 페이지
-				</h3>
+				</h2>
 			</div>
 			<div>
-				<form role="form" method=" enctype="multipart/form-data" th:object="${itemFormDto}">
+				<form role="form" method="post">
 				</form>
 			</div>
 		</div>
