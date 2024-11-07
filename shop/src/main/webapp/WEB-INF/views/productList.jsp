@@ -44,10 +44,13 @@
 				<div class="prdPrice">
 					<p>
 					${product.prdPrice}
-						<%-- <fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${product.prdPrice}"/> --%>
+					<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${product.prdPrice}"/>
 					</p>
 				</div>	
 			</c:forEach>
+			<div class="moveAdminBtn">
+				<a href="/prdAdmin">상품 관리</a>
+			</div>
 		</div>
 	</div>
 </section>
