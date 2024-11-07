@@ -14,18 +14,29 @@
 				<h2>상품등록</h2>
 			</div>
 			<div>
-				<form action="${pageContext.request.contextPath}/product/register" method="post">
-				 	<label for="prdName">상품 이름:</label>
-			        <input type="text" id="prdName" name="prdName"><br><br>
+				<form action="/product/register" method="post" enctype="multipart/form-data">
+				 	 <label for="prdImg">이미지 업로드:</label>
+   					 <input type="file" name="prdImgFile" id="prdImg">
+				 	
+				 	<label for="prdName">상품명:</label>
+			        <input type="text" id="prdName" name="prdName">
+			        <p></p>
 			        
-			        <label for="prdPack">포장 정보:</label>
-			        <input type="text" id="prdPack" name="prdPack"><br><br>
-			        
-			        <label for="prdParts">부품 정보:</label>
-			        <input type="text" id="prdParts" name="prdParts"><br><br>
-			        
+			        <label for="prdPack">팩션:</label>
+			        <input type="text" id="prdPack" name="prdPack">
+			        <p></p>
+			        <label for="prdParts">파츠:</label>
+			        <input type="text" id="prdParts" name="prdParts">
+			        <p></p>
+			        <label for="prdCost">코스트:</label>
+			        <input type="number" id="prdCost" name="prdCost" >
+			        <p></p>
+			        <label for="prdCost">효과</label>
+			        <textarea type="number" id="prdDes" name="prdDes" ></textarea>
+			        <p></p>
 			        <label for="prdPrice">가격:</label>
-			        <input type="number" id="prdPrice" name="prdPrice" step="0.01"><br><br>
+			        <input type="number" id="prdPrice" name="prdPrice" >
+			        <p></p>
 			        
 			        <input type="submit" value="등록">
 		        </form>
