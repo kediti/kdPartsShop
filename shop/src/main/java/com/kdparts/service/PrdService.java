@@ -3,6 +3,7 @@ package com.kdparts.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -14,9 +15,11 @@ import com.kdparts.repository.PrdRepository;
 @Service
 @Configuration
 @EnableJpaRepositories(basePackages = "com.kdparts.repository")
-@EntityScan(basePackages = "com.kdparts.emtity")
+@EntityScan(basePackages = "com.kdparts.entity")
 public class PrdService {
-	private final PrdRepository prdRepository;
+	
+	@Autowired
+	private PrdRepository prdRepository;
 	
 	 public PrdService(PrdRepository prdRepository) {
 	        this.prdRepository = prdRepository;
@@ -25,4 +28,7 @@ public class PrdService {
 		// TODO Auto-generated method stub
 		return prdRepository.findAll();
 	} 
+	 public Product saveProduct(Product product) {
+	        return prdRepository.save(product);
+	    }
 }

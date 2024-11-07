@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp.jstl/core" %>
-<%-- <%@ taglib prefix="c" uri="jakarta.tags.core" %> --%>
-<%-- <%@ taglib prefix="fmt" uri="http://jakarta.apache.org/jsp/jstl/fmt" %> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- <%@ taglib prefix="fmt" uri="https://jakarta.ee/tags/fmt" %> --%>
 
 
 <!DOCTYPE html>
@@ -23,7 +22,7 @@
 			</div>
 		</c:if>
 		<div class="itemIist">
-			<c:forEach var="product" items="${List}">
+			<c:forEach var="product" items="${product}">
 				<div>
 					<a href="${path}/product/${product.prdId}">
 						<img src="${path}/images/${product.prdImg}">
@@ -53,7 +52,7 @@
 					</p>
 				</div>
 				<c:if test="${sessionScope.adminId != null}">
-	                <a href="edit/${row.productId}">[상품편집]</a>
+	                <a href="edit/${product.prdId}">[상품편집]</a>
 	            </c:if>	
 			</c:forEach>
 		</div>
@@ -62,11 +61,3 @@
 <!-- 푸터 삽입 -->
 </body>
 </html>
-
-<script>
-$(document).ready(function(){
-    $("#btnAdd").click(function(){
-        location.href="/write.do";
-    });
-});
-</script>

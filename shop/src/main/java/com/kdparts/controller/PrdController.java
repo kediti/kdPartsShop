@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import com.kdparts.entity.Product;
@@ -33,28 +37,14 @@ public class PrdController {
 		return "productList";
 	}
 	
-	@RequestMapping("/write.do")
-	public String write(){
-		return "prdWrite";
-	}
-	
-	@RequestMapping("/insert.do")
-	public String insert(Product product){
-		String filename="";
-		
-		if(!product.getPrdImg().isEmpty()) {
-			filename = product.getPrdImg().getOriginalFilename();
-			String path = "C:\\Users\\kdy97\\git\\kdPartsShop\\shop\\src\\main\\webapp\\WEB-INF\\views\\images";
-			
-			try {
-				new File(path).mkdirs();
-				product.getPrdImg().transferTo(new File(path+filename));
-			} catch(Exception e) {
-				
-			}
-			
-		}
-		
-		return "prdWrite";
-	}
+	 @GetMapping("/product/register")
+	    public String showRegisterForm(Model model) {
+	        model.addAttribute("product", new Product());
+	        return "productRegister";
+	    }
+	 @PostMapping("/product/register")
+	    public String registerProduct(@ModelAttribute("product") Product product) {
+	        prdService.saveProduct(product);
+	        return "redirect:/productList";
+	    }
 }
