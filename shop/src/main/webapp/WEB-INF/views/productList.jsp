@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://jakarta.apache.org/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp.jstl/core" %>
 <%-- <%@ taglib prefix="c" uri="jakarta.tags.core" %> --%>
 <%-- <%@ taglib prefix="fmt" uri="http://jakarta.apache.org/jsp/jstl/fmt" %> --%>
 
@@ -17,8 +17,13 @@
 		<div class="title">
 			<h1>ITEM LIST</h1>
 		</div>
+		<c:if test="${sessionScope.adminId != null}">
+			<div>
+				<button type="button" id="btnAdd"> 상품 등록</button>
+			</div>
+		</c:if>
 		<div class="itemIist">
-			<c:forEach var="product" items="${List }">
+			<c:forEach var="product" items="${List}">
 				<div>
 					<a href="${path}/product/${product.prdId}">
 						<img src="${path}/images/${product.prdImg}">
@@ -46,14 +51,22 @@
 					${product.prdPrice}
 					<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${product.prdPrice}"/>
 					</p>
-				</div>	
+				</div>
+				<c:if test="${sessionScope.adminId != null}">
+	                <a href="edit/${row.productId}">[상품편집]</a>
+	            </c:if>	
 			</c:forEach>
-			<div class="moveAdminBtn">
-				<a href="/prdAdmin">상품 관리</a>
-			</div>
 		</div>
 	</div>
 </section>
 <!-- 푸터 삽입 -->
 </body>
 </html>
+
+<script>
+$(document).ready(function(){
+    $("#btnAdd").click(function(){
+        location.href="/write.do";
+    });
+});
+</script>

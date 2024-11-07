@@ -1,6 +1,7 @@
 package com.kdparts.controller;
 
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,28 @@ public class PrdController {
 		return "productList";
 	}
 	
-	@RequestMapping("/prdAdmin")
+	@RequestMapping("/write.do")
+	public String write(){
+		return "prdWrite";
+	}
 	
-	public String prdAdmin(){
-	
-		return "prdAdmin";
+	@RequestMapping("/insert.do")
+	public String insert(Product product){
+		String filename="";
+		
+		if(!product.getPrdImg().isEmpty()) {
+			filename = product.getPrdImg().getOriginalFilename();
+			String path = "C:\\Users\\kdy97\\git\\kdPartsShop\\shop\\src\\main\\webapp\\WEB-INF\\views\\images";
+			
+			try {
+				new File(path).mkdirs();
+				product.getPrdImg().transferTo(new File(path+filename));
+			} catch(Exception e) {
+				
+			}
+			
+		}
+		
+		return "prdWrite";
 	}
 }
