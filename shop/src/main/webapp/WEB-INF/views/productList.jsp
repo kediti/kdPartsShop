@@ -16,9 +16,15 @@
 		<div class="title">
 			<h1>ITEM LIST</h1>
 		</div>
+		<div class="search">
+			<form action="${path}/productList" method="get">
+				<input type="text" name="keyword" value="${keyword}" placeholder="Search">
+				<button type="submit">Find</button>
+			</form>
+		</div>
 
 		<div class="itemIist">
-			<c:forEach var="product" items="${product}">
+			<c:forEach var="product" items="${productList}">
 				<div>
 					<a href="${path}/product/${product.prdId}">
 						<img src="${path}/images/${product.prdImg}">

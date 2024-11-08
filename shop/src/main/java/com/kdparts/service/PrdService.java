@@ -26,7 +26,7 @@ public class PrdService {
 	        this.prdRepository = prdRepository;
 	    }
 	public List<Product> getAllproduct() {
-		// TODO Auto-generated method stub
+		
 		return prdRepository.findAll();
 	} 
 	 public Product saveProduct(Product product) {
@@ -36,4 +36,8 @@ public class PrdService {
 	 public Product getProductById(Long prdId) {
 		 return prdRepository.findById(prdId).orElseThrow(() -> new NoSuchElementException("Product not found"));
 	 }
+	 
+	 public List<Product> searchProductByKeyword(String keyword) {
+		    return prdRepository.findByPrdNameContainingOrPrdPartsContainingOrPrdPackContaining(keyword, keyword, keyword);
+		}
 }

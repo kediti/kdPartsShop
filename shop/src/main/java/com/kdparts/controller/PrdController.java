@@ -32,11 +32,19 @@ public class PrdController {
         this.prdService = prdService;
     }
 	
-	@RequestMapping("/productList")
-	public String getProductList(Model model) {
-		List<Product> products = prdService.getAllproduct();
-		model.addAttribute("product", prdService.getAllproduct());
-		model.addAttribute("List", products);
+	
+	@GetMapping("/productList")
+	public String getProductList(@RequestParam(value="keyword", required=false) String keyword, Model model) {
+		List<Product> productList;
+		
+		if(keyword != null && !keyword.isEmpty()) {
+			productList = prdService.searchProductByKeyword(keyword);
+		}else {
+			productList=prdService.getAllproduct();
+		}
+		
+		model.addAttribute("productList", productList);
+		model.addAttribute("keyword",keyword);
 		return "productList";
 	}
 	
