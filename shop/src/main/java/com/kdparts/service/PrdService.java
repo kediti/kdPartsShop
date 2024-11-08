@@ -2,6 +2,7 @@ package com.kdparts.service;
 
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -31,4 +32,8 @@ public class PrdService {
 	 public Product saveProduct(Product product) {
 	        return prdRepository.save(product);
 	    }
+	 
+	 public Product getProductById(Long prdId) {
+		 return prdRepository.findById(prdId).orElseThrow(() -> new NoSuchElementException("Product not found"));
+	 }
 }
