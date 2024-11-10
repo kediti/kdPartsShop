@@ -36,7 +36,7 @@
 			        <p></p>
 			        <label for="prdPrice">가격:</label>
 			        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
-			        
+			        <p></p>
 			        <input type="submit" value="등록">
 		        </form>
 			</div>
