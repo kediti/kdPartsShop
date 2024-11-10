@@ -32,11 +32,10 @@
 			        <input type="number" id="prdCost" name="prdCost" >
 			        <p></p>
 			        <label for="prdCost">효과</label>
-			        <textarea type="number" id="prdDes" name="prdDes" ></textarea>
+			        <textarea type="text" id="prdDes" name="prdDes" ></textarea>
 			        <p></p>
 			        <label for="prdPrice">가격:</label>
-			        <input type="number" id="prdPrice" name="prdPrice" >
-			        <p></p>
+			        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
 			        
 			        <input type="submit" value="등록">
 		        </form>
