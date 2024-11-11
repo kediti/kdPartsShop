@@ -1,0 +1,71 @@
+/* 헤더 스타일링 */
+header {
+    height: 80px; /* 헤더 높이 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: linear-gradient(45deg, #00d4ff, #ff008e);  /* 사이버펑크 색조의 그라디언트 배경 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);  /* 어두운 그림자 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* 로고 스타일링 */
+header .logo a {
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* 네비게이션 메뉴 스타일링 */
+header .nav {
+    display: flex;
+    align-items: center;
+}
+
+header .nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 30px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* 로그아웃 링크 스타일 */
+header div.logout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;  /* 오른쪽 끝으로 배치 */
+    min-width: 150px;  /* 최소 너비를 설정하여 버튼이 잘리지 않도록 함 */
+   
+}
+
+header div.logout a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #ff008e;
+    padding: 12px 24px;  /* 버튼 크기 조정 */
+    border-radius: 4px;
+    font-size: 16px;
+    white-space: nowrap;  /* 텍스트가 한 줄로 유지되도록 설정 */
+    transition: background-color 0.3s ease;
+     
+}
+
+header div.logout a:hover {
+    background-color: #ff4a7f;
+}
+
+/* 사이버펑크 스타일 글로우 효과 */
+header a:hover {
+    text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #00d4ff;
+}

@@ -12,6 +12,7 @@
 <title>ITEM DETAIL</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/header.jsp" />
 	<section class="wrap">
 		<div class="title">
 			<h2>ITEM DETAIL</h2>
@@ -67,5 +68,19 @@ window.onload = function() {
         };
     });
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+    var image = document.getElementById('productImage');
+
+    // 이미지 로딩 후 처리
+    image.onload = function() {
+        image.classList.remove('loading');
+        image.classList.add('loaded');
+        document.querySelector('.noiseEffect').style.display = 'none';  // 노이즈 효과 제거
+    }
+
+    // 이미지를 로딩하기 전에 클래스를 추가
+    image.classList.add('loading');
+});
 </script>
 </html>

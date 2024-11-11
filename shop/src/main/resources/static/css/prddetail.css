@@ -1,23 +1,40 @@
 @charset "UTF-8";
 
 body {
-    background-color: #1f1f1f; /* 어두운 배경 */
+   
     color: #fff; /* 기본 텍스트 색상 */
     font-family: 'Orbitron', sans-serif; /* 사이버펑크 느낌의 폰트 */
     margin: 0;
     padding: 0;
-    height: 100vh; /* 화면을 꽉 채우기 */
-    display: flex; /* Flexbox로 전체 페이지 중앙 정렬 */
+     background-image: url('../images/prdbgi.jpg');
+	background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* 세로에도 꽉차게 */
+     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    margin-top: -100px;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+	
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 투명도 조절 (0.5는 50% 어둡게) */
+    z-index: -1;
 }
 
 .wrap {
     padding-top: 0px;
     max-width: 1200px; /* 최대 너비 설정 */
     width: 100%; /* 너비를 100%로 설정 */
-    
+    /* 헤더 높이만큼 아래로 띄움 */
 }
 
 .container {
@@ -57,101 +74,93 @@ body {
 }
 /* 상품 이미지 영역 */
 .prdImg {
-    flex: 1; /* 사진이 가로 공간을 차지하도록 설정 */
-    max-width: 600px; /* 사진 최대 너비 */
+    flex: 1 1 45%; /* flex-grow, flex-shrink, flex-basis 조정 */
+    max-width: 45%; /* 상품 상세 정보와 비슷한 비율로 설정 */
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-/* 이미지 스타일링 */
 .prdImg img {
-    width: 100%; /* 이미지가 컨테이너를 꽉 채우도록 */
+    width: 100%;
     height: auto;
     object-fit: cover;
-    opacity: 0; /* 처음에는 보이지 않게 */
-    filter: grayscale(100%) contrast(100%) blur(5px); /* 이미지 흐림, 그레이스케일 효과 */
-    animation: imageAppear 2s forwards ease-in-out, imageGlitch 0.3s forwards 2s; /* 이미지 나타나는 애니메이션 + 짧은 지직 효과 */
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
 }
 
-/* 애니메이션: 점차 흐려지면서 나타나는 효과 */
-@keyframes imageAppear {
+/* 노이즈 효과 추가 */
+.noiseEffect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/png;base64,...') repeat; /* 노이즈 패턴 이미지 */
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+    animation: noiseAnim 0.5s infinite;
+}
+
+/* 스캔라인 효과 */
+@keyframes noiseAnim {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+/* 이미지가 서서히 로드되는 효과 */
+@keyframes loadImage {
     0% {
         opacity: 0;
-        filter: grayscale(100%) contrast(100%) blur(5px); /* 흐릿하고 보이지 않음 */
+        transform: scale(1.5);
     }
     50% {
-        opacity: 0.5;
-        filter: grayscale(50%) contrast(150%) blur(2px); /* 흐림이 풀리기 시작 */
-    }
-    100% {
-        opacity: 1;
-        filter: grayscale(0%) contrast(100%) blur(0); /* 완전히 선명하게 나타남 */
-    }
-}
-
-/* 짧은 지직하는 효과 */
-@keyframes imageGlitch {
-    0% {
-        opacity: 1;
-        filter: brightness(1) contrast(100%) saturate(100%);
-    }
-    10% {
-        opacity: 0.9;
-        filter: brightness(0.8) contrast(130%) saturate(150%);
-    }
-    20% {
         opacity: 0.7;
-        filter: brightness(0.7) contrast(150%) saturate(170%);
-    }
-    30% {
-        opacity: 0.8;
-        filter: brightness(0.9) contrast(120%) saturate(160%);
-    }
-    40% {
-        opacity: 1;
-        filter: brightness(1) contrast(100%) saturate(100%);
+        transform: scale(1.2);
     }
     100% {
         opacity: 1;
-        filter: brightness(1) contrast(100%) saturate(100%);
+        transform: scale(1);
     }
 }
 
-/* 로딩 상태 스타일 */
-.prdImg img.loading {
-    opacity: 0; /* 로딩 중에는 보이지 않게 */
+/* 로딩 완료 후 노이즈와 애니메이션 제거 */
+.loading {
+    animation: loadImage 2s ease-out forwards;
 }
 
-.prdImg img.loaded {
-    opacity: 1; /* 로딩이 끝나면 보이게 */
+/* 로딩 완료 후 노이즈 없애기 */
+.loaded {
+    opacity: 1 !important;
 }
 
 
 /* 상품 상세 정보 영역 */
 /* 전체 컨테이너 스타일 */
 .prdDetail {
+    flex: 1 1 45%; /* 이미지와 같은 비율로 설정 */
     color: #00FF00; /* 기본 텍스트 색상 */
     font-family: 'Orbitron', sans-serif; /* 사이버펑크 느낌의 폰트 */
     text-align: left;
     letter-spacing: 2px;
+    padding: 20px; /* 상세 정보 여백 */
 }
 
 /* 텍스트에 네온 효과 추가 */
+/* 텍스트에 간헐적인 노이즈 효과 */
 .prdDetail p {
     font-size: 1.2rem;
-    margin: 10px 0;
+    color: #00FF00;
     position: relative;
     display: inline-block;
-    color: #00FF00; /* 텍스트 색상 */
-    text-shadow: 
-        0 0 5px rgba(0, 255, 0, 0.7),
-        0 0 10px rgba(0, 255, 0, 0.6),
-        0 0 20px rgba(0, 255, 0, 0.5),
-        0 0 30px rgba(0, 255, 0, 0.4),
-        0 0 40px rgba(0, 255, 0, 0.3),
-        0 0 50px rgba(0, 255, 0, 0.2),
-        0 0 75px rgba(0, 255, 0, 0.1); /* 여러 레벨의 네온 효과 */
-    animation: neonGlow 1.5s ease-in-out infinite alternate; /* 깜빡이는 네온 효과 */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7), 0 0 10px rgba(0, 255, 0, 0.6);
+    animation: neonGlow 1.5s ease-in-out infinite alternate, textGlitch 0.2s 3s; /* 네온 깜빡임 후 간헐적 노이즈 */
 }
 /* 네온 효과 애니메이션 */
 @keyframes neonGlow {
@@ -176,7 +185,25 @@ body {
             0 0 150px rgba(0, 255, 0, 0); /* 텍스트가 조금 더 강하게 빛나는 효과 */
     }
 }
-
+/* 짧은 노이즈 효과 */
+@keyframes textGlitch {
+    0% {
+        opacity: 1;
+        text-shadow: 2px 2px 10px rgba(255, 0, 255, 0.8), -2px -2px 10px rgba(0, 255, 255, 0.8);
+    }
+    10% {
+        opacity: 0.9;
+        text-shadow: -4px 4px 10px rgba(0, 255, 0, 0.9), 4px -4px 10px rgba(255, 0, 255, 0.9);
+    }
+    20% {
+        opacity: 1;
+        text-shadow: 2px 2px 10px rgba(255, 0, 255, 0.8), -2px -2px 10px rgba(0, 255, 255, 0.8);
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.7), 0 0 10px rgba(0, 255, 0, 0.6);
+    }
+}
 /* 상품 정보 텍스트 */
 .prdPack, .prdParts, .prdName, .prdPrice, .prdDes {
 	 margin-bottom: 20px;

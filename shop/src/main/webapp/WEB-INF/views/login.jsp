@@ -10,8 +10,6 @@
 </head>
 <body>
 
-
-	<!-- 헤더 넣기 -->
 	<section class="login-container">
 		 <div class="title cyberpunk-text" id="title-text">OBSIDIAN ARMOR SHOP</div>
         <div class="title cyberpunk-text" id="login-text">LOG IN</div>

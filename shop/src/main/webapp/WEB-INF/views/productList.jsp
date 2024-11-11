@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<!-- 헤더 삽입 -->
+<c:import url="/WEB-INF/views/header.jsp" /> 
 <section class="wrap">
 	<div class="container">
 		<div class="title">
