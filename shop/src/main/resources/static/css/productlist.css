@@ -28,6 +28,22 @@
     animation: typing 4s steps(40) 1s forwards;
 }
 
+
+body.loaded #loading-screen {
+    display: none; /* 로딩 화면 숨기기 */
+}
+
+body.loaded #header {
+    display: flex !important;  /* 로딩 후 헤더를 다시 표시 */
+}
+/* 로딩 후에 페이지 내용 표시 */
+body.loaded section.wrap {
+    display: flex;
+}
+
+/* 헤더는 로딩 후에도 보이도록 */
+
+
 /* 타이핑 애니메이션 */
 @keyframes typing {
     0% {
@@ -55,7 +71,7 @@ section.wrap {
 
 /* 페이지가 로딩된 후 표시 */
 body.loaded section.wrap {
-    display: block;
+    display: flex;
      margin-top: 80px;  /* 헤더 높이만큼 아래로 띄움 */
 }
 
@@ -68,7 +84,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh; /* 세로에도 꽉차게 */
-    overflow: hidden;
+    overflow: auto;
     position: relative;
 }
 body::before {

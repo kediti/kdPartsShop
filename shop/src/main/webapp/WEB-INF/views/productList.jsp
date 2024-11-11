@@ -83,18 +83,25 @@
 window.addEventListener('load', function () {
     const searchParams = window.location.search;
     
+    document.getElementById('header').style.display = 'none'; // 로딩 중에는 헤더 숨기기
+    document.getElementById('loading-screen').style.display = 'block'; // 로딩 화면 표시
+    
     // 검색어가 URL에 포함되어 있으면 로딩 화면을 숨기고, 검색된 결과만 보여준다.
     if (searchParams === '') {
         // 페이지가 처음 로드될 때만 로딩 화면을 6초 동안 보여준다.
-        setTimeout(function () {
-            document.getElementById('loading-screen').style.display = 'none';
+         setTimeout(function () {
+            document.getElementById('loading-screen').style.display = 'none'; // 로딩 화면 숨기기
+            document.getElementById('header').style.display = 'block'; // 로딩 후 헤더 보이게
             document.body.classList.add('loaded');
         }, 6000); // 로딩 화면 지속 시간
     } else {
         // 검색이 있으면 로딩 화면을 숨긴다.
-        document.getElementById('loading-screen').style.display = 'none';
-        document.body.classList.add('loaded');
+    	 document.getElementById('loading-screen').style.display = 'none'; 
+         document.getElementById('header').style.display = 'block'; 
+         document.body.classList.add('loaded');
+        
     }
+
 });
 
 

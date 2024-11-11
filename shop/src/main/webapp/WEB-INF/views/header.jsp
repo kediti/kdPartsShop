@@ -12,7 +12,7 @@
 <body>
 <!-- 헤더 섹션 -->
 
-<header>
+<header id="header" >
     <div class="logo">
         <a >EMBER</a>  
     </div>
@@ -23,7 +23,7 @@
         <a >Contact</a>
     </div>
    	<div>
-   		<a href="${path}/login" style="margin-right: 50px;">LOG OUT</a>
+   		<a href="${path}/login" class="logout"">LOG OUT</a>
     </div>
 </header>
 
