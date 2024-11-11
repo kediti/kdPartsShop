@@ -12,6 +12,46 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/signup.css">
 	<script>
 	$(window).on('load', function(){
+		
+		  // 암호 해독 애니메이션 함수
+	    function decodeText(element, text, speed = 50) {
+	        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	        let decodedText = '';
+	        let displayText = text.split('').map(() => characters[Math.floor(Math.random() * characters.length)]).join('');
+
+	        let interval = setInterval(() => {
+	            displayText = displayText.split('').map((char, i) => {
+	                if (i < decodedText.length) return decodedText[i];
+	                return characters[Math.floor(Math.random() * characters.length)];
+	            }).join('');
+
+	            element.textContent = displayText;
+
+	            if (decodedText.length < text.length) {
+	                decodedText += text[decodedText.length];
+	            } else {
+	                clearInterval(interval);
+	            }
+	        }, speed);
+	    }
+		//애니메이션
+		decodeText(document.getElementById('signupLogo'), '회원가입');
+	    decodeText(document.querySelector('label[for="inputId"]'), 'ID');
+	    decodeText(document.querySelector('label[for="inputPassword"]'), 'PASSWORD');
+	    decodeText(document.querySelector('label[for="checkPassword"]'), 'PASSWORD CHECK');
+	    decodeText(document.querySelector('label[for="inputEmail"]'), 'E-MAIL');
+	    decodeText(document.querySelector('label[for="inputNickname"]'), 'NICKNAME');
+	    decodeText(document.querySelector('label[for="inputPhone"]'), 'PHONE');
+			
+		// 폼 필드와 버튼이 순차적으로 등장하는 애니메이션
+	    $('#inputId').addClass('animated');
+	    $('#inputPassword').addClass('animated');
+	    $('#checkPassword').addClass('animated');
+	    $('#inputEmail').addClass('animated');
+	    $('#inputNickname').addClass('animated');
+	    $('#inputPhone').addClass('animated');
+	    $('button').addClass('animated');
+		
 		//전화번호
 		let inputPhone = null;
 		$('#inputPhone').on("input",function(){
@@ -168,34 +208,34 @@
 <body>
 <form method="post" action="/joinAction">
 	<div class="container">
-		<h1> 회원가입 </h1>
+		<h1 id="signupLogo"> 회원가입 </h1>
 		<div>
-			<label>ID</label>
+			<label for="inputId">ID</label>
 			<input type="text" class="fromControl" id="inputId" name="userId" required>
 			<span id="spanId"></span>
 		</div>
 		<div>
-			<label>PASSWORD</label>			
+			<label for="inputPassword">>PASSWORD</label>			
 			<input type="password" class="fromControl" id="inputPassword" name="userPw" required>
 			<span id="spanPw"></span>	
 		</div>
 		<div>
-			<label>PASSWORD CHECK</label>
+			<label for="checkPassword">PASSWORD CHECK</label>
 			<input type="password" class="formControl" id="checkPassword" name="pwCheck" required>
 			<span id="spanPwC"></span>
 		</div>
 		<div>
-			<label>E-MAIL</label>
+			<label for="inputEmail" >E-MAIL</label>
 			<input type="text" class="formControl" id="inputEmail" name="email" required>
 			<span id="spanEmail"></span>
 		</div>
 		<div>
-			<label>NICKNAME</label>
+			<label for="inputNickname">NICKNAME</label>
 			<input type="text" class="formControl" id="inputNickname" name="nickname" required>
 			<span id="spanNickname"></span>	
 		</div>
 		<div>
-			<label>PHONE</label>
+			<label for="inputPhone">PHONE</label>
 			<select id="inputTelecom" name="telecom">
 				<option value="kt">KT</option>
 				<option value="skt">SKT</option>
@@ -209,6 +249,10 @@
 	</div>
 </form>
 </body>
+
+  
+
+
 </html>
 
 <!-- 이하 데이터 정합성 검사 -->
