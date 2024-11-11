@@ -6,10 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productlist.css">
 <meta charset="UTF-8">
 <title>ITEM LIST</title>
 </head>
 <body>
+
+<!-- 로딩 화면 -->
+<div id="loading-screen">
+    <div id="loading-text">
+        <p>Initializing Hack... </p>
+    </div>
+</div>
+
 <!-- 헤더 삽입 -->
 <section class="wrap">
 	<div class="container">
@@ -25,7 +34,8 @@
 
 		<div class="itemIist">
 			<c:forEach var="product" items="${productList}">
-				<div>
+			<div class="item">
+				<div class="product-card">
 					<a href="${path}/product/${product.prdId}">
 						<img src="${path}/images/${product.prdImg}">
 					</a>
@@ -52,7 +62,12 @@
 					<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${product.prdPrice}"/>
 					</p>
 				</div>	
+				
+			</div>
 			</c:forEach>
+			<c:if test="${empty productList}">
+			    <p>검색 결과가 없습니다.</p>
+			</c:if>
 			
 			<div class ="movebtn">
 				<a href="/product/register">.</a> 
@@ -64,5 +79,24 @@
 </body>
 
 </html>
+<script>
+window.addEventListener('load', function () {
+    const searchParams = window.location.search;
+    
+    // 검색어가 URL에 포함되어 있으면 로딩 화면을 숨기고, 검색된 결과만 보여준다.
+    if (searchParams === '') {
+        // 페이지가 처음 로드될 때만 로딩 화면을 6초 동안 보여준다.
+        setTimeout(function () {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.body.classList.add('loaded');
+        }, 6000); // 로딩 화면 지속 시간
+    } else {
+        // 검색이 있으면 로딩 화면을 숨긴다.
+        document.getElementById('loading-screen').style.display = 'none';
+        document.body.classList.add('loaded');
+    }
+});
 
+
+</script>
 

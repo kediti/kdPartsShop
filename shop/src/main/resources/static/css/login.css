@@ -21,7 +21,7 @@ body::before {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5); /* 투명도 조절 (0.5는 50% 어둡게) */
-    z-index: 0;
+    z-index: -1;
 }
 
 
