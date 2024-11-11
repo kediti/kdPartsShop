@@ -15,7 +15,8 @@
 <!-- 로딩 화면 -->
 <div id="loading-screen">
     <div id="loading-text">
-        <p>Initializing Hack... </p>
+        <p id="hacking-text">Initializing Hack... </p>
+        <div id="hacking-codes"></div>
     </div>
 </div>
 
@@ -85,6 +86,55 @@ window.addEventListener('load', function () {
     
     document.getElementById('header').style.display = 'none'; // 로딩 중에는 헤더 숨기기
     document.getElementById('loading-screen').style.display = 'block'; // 로딩 화면 표시
+    
+    let hackText = document.getElementById("hacking-text");
+    let textContent = "Initializing Hack... ";
+    let currentText = "";
+    let i = 0;
+    
+    function typeHackText() {
+        if (i < textContent.length) {
+            currentText += textContent.charAt(i);
+            hackText.innerHTML = currentText + "<span class='blinking-cursor'>|</span>"; // 깜빡이는 커서 추가
+            i++;
+            setTimeout(typeHackText, Math.random() * 150); // 타이핑 속도 랜덤화
+        } else {
+            hackText.innerHTML = "Hack Complete.";
+            setTimeout(function () {
+                document.getElementById('loading-screen').style.display = 'none'; // 로딩 화면 숨기기
+                document.getElementById('header').style.display = 'block'; // 로딩 후 헤더 보이게
+                document.body.classList.add('loaded');
+            }, 1000); // 메시지 완료 후 잠시 대기
+        }
+    }
+    
+    // 해킹 코드 효과
+    const hackingCodesElement = document.getElementById("hacking-codes");
+    let codes = [
+        "Accessing files...",
+        "Bypassing security protocols...",
+        "Decrypting data...",
+        "Breaching firewall...",
+        "Injecting code...",
+        "Overriding system..."
+    ];
+    
+    function generateHackingCode() {
+        let randomCode = codes[Math.floor(Math.random() * codes.length)];
+        let codeLine = document.createElement("p");
+        codeLine.textContent = randomCode;
+        hackingCodesElement.appendChild(codeLine);
+
+        // 아래로 스크롤되는 효과
+        hackingCodesElement.scrollTop = hackingCodesElement.scrollHeight;
+        
+        // 일정 간격으로 새로운 코드 추가
+        setTimeout(generateHackingCode, Math.random() * 1000 + 100); // 코드 생성 간격 랜덤화
+    }
+
+    
+    typeHackText();
+    generateHackingCode(); 
     
     // 검색어가 URL에 포함되어 있으면 로딩 화면을 숨기고, 검색된 결과만 보여준다.
     if (searchParams === '') {
