@@ -8,6 +8,8 @@
 	<meta charset="UTF-8">
 	<title>회원가입</title>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"> <!-- 폰트 -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/signup.css">
 	<script>
 	$(window).on('load', function(){
 		//전화번호
