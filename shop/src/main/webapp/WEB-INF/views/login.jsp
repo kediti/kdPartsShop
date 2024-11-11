@@ -9,6 +9,8 @@
 <title>WELCOME</title>
 </head>
 <body>
+
+
 	<!-- 헤더 넣기 -->
 	<section class="login-container">
 		 <div class="title cyberpunk-text" id="title-text">OBSIDIAN ARMOR SHOP</div>
@@ -33,6 +35,7 @@
 </body>
 
 <script>
+
 function decodeText(element, text, speed = 50) {
             let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let decodedText = '';

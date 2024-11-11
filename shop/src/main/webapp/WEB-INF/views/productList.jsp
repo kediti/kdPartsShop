@@ -55,7 +55,7 @@
 			</c:forEach>
 			
 			<div class ="movebtn">
-				<a href="/product/register">.</a>
+				<a href="/product/register">.</a> 
 			</div>
 		</div>
 	</div>
