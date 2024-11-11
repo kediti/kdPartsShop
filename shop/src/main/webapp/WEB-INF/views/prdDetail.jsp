@@ -6,15 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"> <!-- 폰트 -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/prddetail.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <title>ITEM DETAIL</title>
 </head>
 <body>
 	<section class="wrap">
+		<div class="title">
+			<h2>ITEM DETAIL</h2>
+		</div>
 		<div class ="container">
-			<div class="title">
-				<h2>ITEM DETAIL</h2>
-			</div>
-			
 			<div class = "prdImg">
 				<img src="${path}/images/${product.prdImg}">
 			</div>
@@ -24,7 +26,7 @@
 					<p>${product.prdPack}</p>
 				</div>
 				<div class = "prdParts">
-					<p>${product.prdPack}</p>
+					<p>${product.prdParts}</p>
 				</div>
 				<div class = "prdName">
 					<p>${product.prdName}</p>
@@ -43,4 +45,27 @@
 		</div>
 	</section>
 </body>
+<script>
+//페이지 로딩 후 이미지 처리
+window.onload = function() {
+    var images = document.querySelectorAll('.prdImg img');
+    
+    images.forEach(function(image) {
+        image.classList.add('loading'); // 로딩 중 스타일 적용
+        
+        // 이미지가 로딩되면 opacity를 1로 변경
+        image.onload = function() {
+            image.classList.remove('loading'); // 로딩이 끝난 후
+            image.classList.add('loaded'); // 이미지를 완전히 보이도록
+        };
+        
+        // 이미지가 로딩되지 않으면 대체 이미지나 오류 처리
+        image.onerror = function() {
+            console.error("이미지 로딩 오류");
+            image.classList.remove('loading'); // 로딩 중 스타일 제거
+            image.classList.add('loaded'); // 기본적으로 이미지를 보이게 함
+        };
+    });
+};
+</script>
 </html>
