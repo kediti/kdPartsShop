@@ -1,52 +1,96 @@
 @charset "UTF-8";
 
 body {
-   
-    color: #fff; /* 기본 텍스트 색상 */
-    font-family: 'Orbitron', sans-serif; /* 사이버펑크 느낌의 폰트 */
+   color: #fff;
+    font-family: 'Orbitron', sans-serif;
     margin: 0;
     padding: 0;
-     background-image: url('../images/prdbgi.jpg');
-	background-size: cover;
+    background-image: url('../images/prdbgi.jpg');
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh; /* 세로에도 꽉차게 */
-     display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-    overflow: hidden;
+    background-attachment: fixed;
+    height: 100vh; /* 화면 높이에 맞춰서 확장 */
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+    justify-content: space-between; /* 위 아래로 공간 분배 */
     position: relative;
 }
 
+.wrap, .container {
+    text-align: center; /* 모든 텍스트를 중앙 정렬 */
+}
+
+
 body::before {
-	
-    content: '';
-    position: absolute;
+	content: '';
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* 투명도 조절 (0.5는 50% 어둡게) */
     z-index: -1;
+    
 }
 
 .wrap {
+	margin-left:25%;
+	margin-top: 80px;
     padding-top: 0px;
-    max-width: 1200px; /* 최대 너비 설정 */
-    width: 100%; /* 너비를 100%로 설정 */
-    /* 헤더 높이만큼 아래로 띄움 */
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;  /* 세로 방향 정렬 */
+    justify-content: flex-start;  /* 세로로 콘텐츠 정렬 */
+    align-items: center;  /* 가로 중앙 정렬 */
+    flex: 1;
+}
+
+.prdImg,
+.prdDetail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 .container {
-    display: flex; /* Flexbox로 레이아웃 설정 */
-    flex-direction: row; /* 기본 값으로 왼쪽-오른쪽 정렬 */
-    justify-content: space-between;
-    gap: 20px; /* 사진과 내용 사이의 간격 */
-    width: 100%; /* 너비를 100%로 설정 */
-    align-items: center; /* 세로 중앙 정렬 */
-    text-align: center; /* 텍스트 중앙 정렬 */
+  	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* 콘텐츠가 중앙에 오도록 */
+    align-items: flex-start;  /* 세로 정렬 */
+    gap: 20px;
+    width: 100%;
     
 }
+
+
+/* 푸터 위치를 하단에 고정 */
+#footer {
+    background-color: #111;
+    color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    border-top: 2px solid #39ff14;
+    margin-top: auto; /* 푸터를 화면 하단에 고정 */
+}
+
+#footer p a {
+    color: #39ff14;
+    text-decoration: none;
+}
+
+#footer p a:hover {
+    text-shadow: 0 0 8px #39ff14;
+    color: #ffffff;
+}
+
+
+
 /* 디지털 노이즈 효과 */
 @keyframes noiseEffect {
     0% {
@@ -63,32 +107,49 @@ body::before {
     }
 }
 
+
+.prdImg, .prdDetail {
+    flex: 1 1 45%;
+    box-sizing: border-box;
+}
+
 /* 텍스트 스타일에 적용 */
 .title h2 {
-    font-size: 4em;
+     font-size: 4em;
     color: #00ff00;
     text-align: center;
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 3px;
-    animation: noiseEffect 0.3s ease-in-out 2s 1; /* 2초 뒤에 0.3초간 샤샥 효과 */
+    animation: noiseEffect 0.3s ease-in-out 2s 1;
+    white-space: nowrap;  /* 텍스트가 한 줄로 보이게 함 */
+    overflow: hidden;  /* 넘치는 텍스트 숨기기 */
+    text-overflow: ellipsis;  /* 넘치는 텍스트에 '...' 추가 */
+    width: 100%;  /* 부모 요소 크기에 맞게 설정 */
+    box-sizing: border-box;
 }
 /* 상품 이미지 영역 */
-.prdImg {
-    flex: 1 1 45%; /* flex-grow, flex-shrink, flex-basis 조정 */
-    max-width: 45%; /* 상품 상세 정보와 비슷한 비율로 설정 */
+ .prdImg {
+     flex: 1 1 45%; flex-grow, flex-shrink, flex-basis 조정
+    max-width: 45%; 이미지 비율을 조정
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-}
+} 
 
 .prdImg img {
-    width: 100%;
+    width: 100%; /* 이미지 너비를 100%로 설정하여 화면 크기에 맞게 크기 조절 */
+    transition: opacity 1s ease-in-out; /* 이미지 로딩 시 페이드 인 효과 */
+    opacity: 0; /* 로딩 중에는 투명도 0 */
     height: auto;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
 }
+
+.prdImg img.loaded {
+    opacity: 1; /* 로딩 완료 후 투명도 1로 설정 */
+}
+
+
 
 /* 노이즈 효과 추가 */
 .noiseEffect {
@@ -144,12 +205,15 @@ body::before {
 /* 상품 상세 정보 영역 */
 /* 전체 컨테이너 스타일 */
 .prdDetail {
-    flex: 1 1 45%; /* 이미지와 같은 비율로 설정 */
+   flex: 1 1 45%; /* 이미지와 같은 비율로 설정 */
     color: #00FF00; /* 기본 텍스트 색상 */
     font-family: 'Orbitron', sans-serif; /* 사이버펑크 느낌의 폰트 */
     text-align: left;
     letter-spacing: 2px;
     padding: 20px; /* 상세 정보 여백 */
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+    justify-content: flex-start; /* 세로 정렬 */
 }
 
 /* 텍스트에 네온 효과 추가 */
@@ -214,9 +278,9 @@ body::before {
 }
 
 .prdPrice {
+    font-size: 1.5rem;
     font-weight: bold;
-    font-size: 1.5em;
-    color: #00ff00; /* 네온 그린 */
+    color: #ffff00; /* 네온 옐로우 */
 }
 
 /* 장바구니 버튼 및 링크 */
@@ -225,20 +289,14 @@ body::before {
 }
 
 .cart p {
+    font-size: 1rem;
     color: #ff00ff;
-    font-size: 1.2em;
 }
-
 .cart a {
-    color: #00FF00;
     font-size: 1.2rem;
+    color: #00FF00;
     text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 2px;
-    transition: color 0.3s ease;
 }
-
 .cart a:hover {
-    color: #ff007f; /* 마우스 오버 시 다른 색상 */
+    color: #ff00ff;
 }
